@@ -32,16 +32,17 @@ public class MainProgram
         InputReader inputReader = new InputReader();
         int[][,] sudokos = inputReader.Text2Sudokos(SUDOKOS.SUDOKUS);
 
-
+        string projectFolderFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "puzzles.txt");
         if (args.Length > 0)
         {
             Console.WriteLine($"Bezig met inlezen van: {args[0]}");
             sudokos = inputReader.ReadFile(args[0]);
         }
-        else if (File.Exists("puzzles.txt"))
+
+        else if (File.Exists(projectFolderFile))
         {
             Console.WriteLine("Geen argumenten. Leest standaard 'puzzles.txt'...");
-            sudokos = inputReader.ReadFile("puzzles.txt");
+            sudokos = inputReader.ReadFile(projectFolderFile);
         }
         else
         {
@@ -146,6 +147,7 @@ public class InputReader
         }
 
         string fileContent = File.ReadAllText(filepath);
+       
         return Text2Sudokos(fileContent);
     }
 
@@ -209,10 +211,8 @@ public class InputReader
     public int[][,] Text2Sudokos(string text)
     {
 
-        text = text.Replace("\\r", " ").Replace("\\n", " ");
-        text = text.Replace("\r", " ").Replace("\n", " ");
-
-       
+        text = text.Replace(@"\", " ");
+      
         List<int[,]> sudokos = new List<int[,]>();
 
         List<int> sudokoBuilder = new List<int>();
