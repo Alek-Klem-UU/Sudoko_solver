@@ -67,6 +67,7 @@ Solving **Expert-level puzzles** with minimal search effort.
 
 
 <img width="649" height="434" alt="image" src="https://github.com/user-attachments/assets/a6803e66-b3d5-4048-b81e-64165bf0a50e" />
+<img width="971" height="379" alt="image" src="https://github.com/user-attachments/assets/54439206-6647-420c-beea-8f945de34b3e" />
 
 Using a 17 clue sudoko these differences are highlighted the best.
 
