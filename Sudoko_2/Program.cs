@@ -138,6 +138,7 @@ public class InputReader
         return Text2Sudokos(fileContent);
     }
 
+    /*
     /// <summary>
     /// Convert a string in the format '0 0 .... 0 0' to a single sudoku in the [,] data format
     /// </summary>
@@ -191,7 +192,56 @@ public class InputReader
 
         return sudokus;
     }
+    */
 
+
+    public int[][,] Text2Sudokos(string text)
+    {
+
+        text = text.Replace("\\r", " ").Replace("\\n", " ");
+        text = text.Replace("\r", " ").Replace("\n", " ");
+
+       
+        List<int[,]> sudokos = new List<int[,]>();
+
+        List<int> sudokoBuilder = new List<int>();
+
+        for (int i = 1; i < text.Length - 1; i++)
+        {
+            char character_previous = text[i - 1];
+            char character = text[i];
+            char character_next = text[i + 1];
+
+            if (character_previous == ' ' && character_next == ' ')
+            {
+                if (char.IsDigit(character))
+                {
+                    sudokoBuilder.Add(character - '0');
+                }
+            }
+
+           
+
+            if (sudokoBuilder.Count == 81)
+            {
+                int index = 0;
+                int[,] sudoko = new int[9, 9];
+                for (int i2 = 0; i2 < 9; i2++)
+                {
+                    for (int i3 = 0; i3 < 9; i3++)
+                    {
+                        sudoko[i3, i2] = sudokoBuilder[index];
+                        index++;
+                    }
+                }
+                sudokoBuilder = new List<int>();
+                sudokos.Add(sudoko);
+            }
+        }
+
+
+        return sudokos.ToArray();
+    }
 }
 
 
