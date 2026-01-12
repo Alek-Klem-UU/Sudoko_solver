@@ -65,6 +65,11 @@ Solving **Expert-level puzzles** with minimal search effort.
 | MRV + FC         | Heuristic Search      | Look-ahead + MRV           | Very Low            |
 | Local Search     | Iterative Repair      | N/A (Stochastic)           | Variable            |
 
+
+<img width="649" height="434" alt="image" src="https://github.com/user-attachments/assets/a6803e66-b3d5-4048-b81e-64165bf0a50e" />
+
+Using a 17 clue sudoko these differences are highlighted the best.
+
 ---
 
 ## ⚙️ Installation & Usage
