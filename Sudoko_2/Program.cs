@@ -51,63 +51,74 @@ public class MainProgram
         }
 
 
-        /* -- first exercise --
+
         //Uncomment this code to collect data points:
 
         //DataHoarder hoarder = new DataHoarder();
         //hoarder.GetData(sudokos[0], 1, 5);
 
-        // This solves all of the sudokus and shows the solved sudokus
-        foreach (int[,] sudoko in sudokos)
+        Console.WriteLine("Which exercise would you like to test (input '1' or '2'):");
+
+        string input = Console.ReadLine();
+
+        while (input != "1" && input != "2")
         {
-            Solver solver = new Solver(sudoko);
-            solver.solve(true, 3, 5);
-        }
-        */
-
-
-        foreach (int[,] puzzle in sudokos)
-        {
-            Console.WriteLine("--------------------------------------------------");
-
-            // 1. Chronological Backtracking
-            CBT_Solver cbt = new CBT_Solver(puzzle);
-            var sw1 = System.Diagnostics.Stopwatch.StartNew();
-            cbt.Solve();
-            sw1.Stop();
-            Console.WriteLine($"CBT     - Nodes: {cbt.nodesVisited,10} | Tijd: {sw1.Elapsed.TotalMilliseconds,8:F2}ms");
-
-            // 2. Forward Checking
-            FC_Solver fc = new FC_Solver(puzzle);
-            var sw2 = System.Diagnostics.Stopwatch.StartNew();
-            fc.Solve();
-            sw2.Stop();
-            Console.WriteLine($"FC      - Nodes: {fc.nodesVisited,10} | Tijd: {sw2.Elapsed.TotalMilliseconds,8:F2}ms");
-
-            // 3. Forward Checking + MCV
-            MCV_FC_Solver mcv = new MCV_FC_Solver(puzzle);
-            var sw3 = System.Diagnostics.Stopwatch.StartNew();
-            mcv.Solve();
-            sw3.Stop();
-            Console.WriteLine($"FC+MCV  - Nodes: {mcv.nodesVisited,10} | Tijd: {sw3.Elapsed.TotalMilliseconds,8:F2}ms");
-
-            
-            cbt.PrintResult();
-            Console.WriteLine("");
-            fc.PrintResult();
-            Console.WriteLine("");
-            mcv.PrintResult();
-            Console.WriteLine("");
-            
+            Console.WriteLine("Non valid input, please try again");
+            input = Console.ReadLine();
 
         }
+        
+        if (input == "1")
+        {
+            foreach (int[,] sudoko in sudokos)
+            {
+                Solver solver = new Solver(sudoko);
+                solver.solve(true, 3, 5);
+            }
+        }
+       
+
+        if (input == "2")
+        {
+            foreach (int[,] puzzle in sudokos)
+            {
+                Console.WriteLine("--------------------------------------------------");
+
+                // 1. Chronological Backtracking
+                CBT_Solver cbt = new CBT_Solver(puzzle);
+                var sw1 = System.Diagnostics.Stopwatch.StartNew();
+                cbt.Solve();
+                sw1.Stop();
+                Console.WriteLine($"CBT     - Nodes: {cbt.nodesVisited,10} | Tijd: {sw1.Elapsed.TotalMilliseconds,8:F2}ms");
+
+                // 2. Forward Checking
+                FC_Solver fc = new FC_Solver(puzzle);
+                var sw2 = System.Diagnostics.Stopwatch.StartNew();
+                fc.Solve();
+                sw2.Stop();
+                Console.WriteLine($"FC      - Nodes: {fc.nodesVisited,10} | Tijd: {sw2.Elapsed.TotalMilliseconds,8:F2}ms");
+
+                // 3. Forward Checking + MCV
+                MCV_FC_Solver mcv = new MCV_FC_Solver(puzzle);
+                var sw3 = System.Diagnostics.Stopwatch.StartNew();
+                mcv.Solve();
+                sw3.Stop();
+                Console.WriteLine($"FC+MCV  - Nodes: {mcv.nodesVisited,10} | Tijd: {sw3.Elapsed.TotalMilliseconds,8:F2}ms");
+
+
+                cbt.PrintResult();
+                Console.WriteLine("");
+             
+
+            }
+
+        }
+
 
 
     }
 
-
-
-
+    
 }
 
 
