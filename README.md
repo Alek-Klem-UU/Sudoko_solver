@@ -81,6 +81,8 @@ cd Sudoko_solver
 A C# IDE
 
 ### 3. Build and run
+```bash
 dotnet build
 dotnet run
+```
 
