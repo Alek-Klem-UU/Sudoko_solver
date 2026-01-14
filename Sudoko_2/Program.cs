@@ -211,11 +211,18 @@ public class InputReader
     public int[][,] Text2Sudokos(string text)
     {
 
+        // Instead of splitting logic look for a reoccuring
+        // lines of single digits with spacing between them
+        // 81 after each other form a Sudoko
+
         text = text.Replace(@"\", " ");
       
         List<int[,]> sudokos = new List<int[,]>();
 
         List<int> sudokoBuilder = new List<int>();
+
+        // Extra fail safe
+        bool streak = false;
 
         for (int i = 1; i < text.Length - 1; i++)
         {
@@ -227,11 +234,16 @@ public class InputReader
             {
                 if (char.IsDigit(character))
                 {
+                    streak = true;
                     sudokoBuilder.Add(character - '0');
                 }
             }
+            else if (streak && character != ' ')
+            {
+                streak = false;
+                sudokoBuilder = new List<int>();
+            }
 
-           
 
             if (sudokoBuilder.Count == 81)
             {
